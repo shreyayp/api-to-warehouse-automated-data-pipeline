@@ -1,102 +1,167 @@
+
 # WeatherScope India — Weather Intelligence Dashboard
 
-A Power BI portfolio dashboard that explores short-range weather forecasts for selected Indian cities. It is designed to demonstrate data preparation, KPI design, slicers, time-series analysis, city comparisons, and a detailed forecast table.
+A Power BI portfolio dashboard that explores short-range weather forecasts across five Indian cities. This project demonstrates data preparation, KPI design, interactive filtering, time-series analysis, city comparisons, and detailed forecast reporting.
 
-> **Where this project lives:** `reports/powerbi/weather-scope-india/` inside the `api-to-warehouse-automated-data-pipeline` repository. It is kept under `reports/powerbi/` because it is a reporting/BI layer that complements the repository's existing data pipeline.
+The dashboard is part of the [`api-to-warehouse-automated-data-pipeline`](https://github.com/shreyayp/api-to-warehouse-automated-data-pipeline) repository and is organized under `reports/powerbi/` as the business intelligence and reporting layer.
 
-## Dashboard highlights
+## Dashboard Preview
 
-- KPI cards for average maximum temperature, peak temperature, average rain probability, and rain-risk forecasts.
-- City slicer for Bengaluru, Chennai, Hyderabad, Mumbai, and Mysuru.
-- Rain probability by forecast date.
-- Average maximum temperature by city.
-- Detailed weather forecast table for record-level inspection.
-- A dark navy/teal Power BI theme.
+**WeatherScope India — Weather Intelligence**
 
-## Repository files
+[**View Dashboard PDF Preview**](WeatherScope_India_Dashboard.pdf) | [**Download Power BI Report (.pbix)**](WeatherScope_India_Dashboard.pbix)
+
+The PDF is a static preview of the report. Download the PBIX file to inspect the report in Power BI Desktop.
+
+## Dashboard Highlights
+
+- **Average Maximum Temperature:** Average forecast maximum temperature across the selected records.
+- **Peak Temperature:** Highest forecast maximum temperature.
+- **Average Rain Probability:** Average forecast precipitation probability.
+- **Rain-Risk Forecasts:** Count of records marked as rain risk.
+- **City Slicer:** Filter the report by Bengaluru, Chennai, Hyderabad, Mumbai, and Mysuru.
+- **Rain Probability Trend:** Compare precipitation probability across forecast dates.
+- **Temperature Comparison:** Compare average maximum temperature across cities.
+- **Detailed Forecast Table:** Explore forecast dates, temperatures, rainfall, wind speed, and rain-risk status.
+- **Dark Navy and Teal Theme:** Consistent colors, contrast, and visual hierarchy.
+
+## Repository Structure
+
+```text
+weather-scope-india/
+├── README.md
+├── WeatherScope_India_Dashboard.pbix
+├── WeatherScope_India_Dashboard.pdf
+├── WeatherScope_PowerBI_Theme.json
+├── data/
+│   └── WeatherScope_PowerBI_Import.csv
+├── screenshots/
+└── data-source.md
+```
+
+## Project Files
 
 | File | Purpose |
 |---|---|
-| `data/WeatherScope_PowerBI_Import.csv` | Standalone CSV prepared for importing into Power BI. |
-| `WeatherScope_PowerBI_Theme.json` | Theme JSON for the report's colors and visual styling. |
-| `WeatherScope_India_Dashboard.html` | Static HTML preview of the dashboard concept; it is not the Power BI report itself. |
-| `screenshots/powerbi-edit-view-reference.png` | Screenshot reference of the Power BI editing view. Replace/add a clean report-canvas screenshot when available. |
-| `README.md` | Project description and step-by-step setup guide. |
+| `WeatherScope_India_Dashboard.pbix` | Power BI report file |
+| `WeatherScope_India_Dashboard.pdf` | Static dashboard preview |
+| `data/WeatherScope_PowerBI_Import.csv` | Dataset used to build the dashboard |
+| `WeatherScope_PowerBI_Theme.json` | Theme configuration for colors and styling |
+| `data-source.md` | Dataset source notes and limitations |
+| `screenshots/` | Dashboard screenshots and visual references |
+| `README.md` | Project overview and setup guide |
 
-The Power BI `.pbix` file is not included yet. Once you have downloaded/saved the report as a `.pbix` file from Power BI (if your tenant/report settings allow it), place it in this folder as `WeatherScope_India_Dashboard.pbix`.
+## Data Source: Which CSV Should I Select?
 
-## Data source: which CSV should I select?
+This repository contains two different CSV files.
 
-This repository already has a pipeline output at the repository root:
+### Option 1 — Recommended for this dashboard
 
-`data/processed/weather_forecast.csv`
-
-Use that file if it contains the columns required by the visuals and measures below. The standalone import file bundled with this dashboard is:
+Use the bundled dashboard dataset:
 
 `reports/powerbi/weather-scope-india/data/WeatherScope_PowerBI_Import.csv`
 
-**Important:** These are two different paths and may have different column names or schema. Start with the bundled `WeatherScope_PowerBI_Import.csv` if you want to reproduce this dashboard using the field names documented below. If you want to use the pipeline output instead, inspect its headers in Power Query and map the fields to the corresponding names. Do not rename columns blindly if your CSV has a different schema.
+This dataset is prepared for the field names and DAX measures documented in this README. It contains 35 forecast records across five Indian cities.
 
-## Step-by-step: open the CSV in Power BI Service (browser)
+### Option 2 — Existing pipeline output
 
-1. Open [Power BI](https://app.powerbi.com/) and sign in.
-2. Open the workspace where you are building the report.
-3. Choose **New** / **Create** and look for an option such as **Report** or **Get data** / **Text or CSV**. Labels can vary with the Power BI experience and your organization's settings.
-4. If the browser experience lets you upload a local file, select `WeatherScope_PowerBI_Import.csv` from this project folder. If you have not downloaded this repository to your computer yet, download the CSV from GitHub first:
-   - Open `reports/powerbi/weather-scope-india/data/WeatherScope_PowerBI_Import.csv`.
-   - Choose **Download raw file** (or the download icon) and save it locally.
-5. If Power BI Service does not offer local CSV import in your workspace, use Power BI Desktop on a Windows machine to import the CSV, create the report, save the `.pbix`, and publish it to the workspace. Power BI Desktop is not available natively for macOS.
-6. In the import dialog, confirm the delimiter is comma and the first row is treated as headers. Check that `forecast_date` is recognized as a date and temperature/rain/wind fields are numeric.
-7. Load the data and rename the imported table to `WeatherForecast` if desired. If you keep a different table name, update DAX references accordingly.
+The main repository also contains:
 
-### Using the existing pipeline CSV instead
+`data/processed/weather_forecast.csv`
 
-If you want the report to connect to the repository's existing pipeline output:
+This file is generated by the existing weather data pipeline. Its schema may differ from the dashboard's bundled import file.
 
-1. In VS Code, use the Explorer at the left.
-2. Expand `data` → `processed`.
-3. Click `weather_forecast.csv`.
-4. To import it, use its local file path from the repository folder: `data/processed/weather_forecast.csv`. Do not select `weather_pipeline.db` when the intention is to load a CSV.
-5. If the CSV is already on your Mac, use **Get data → Text/CSV** in Power BI Desktop and select that file. If working only in Power BI Service, upload/import support depends on the tenant and workspace features available to you.
-6. In Power Query, review the headers and data types, then select **Close & Apply** (Desktop) or the equivalent load/apply action in the browser.
+**Important:** Use `WeatherScope_PowerBI_Import.csv` when reproducing this dashboard. If you choose `weather_forecast.csv`, inspect its column names and data types in Power Query and update the measures and visuals to match. Do not assume both files have identical schemas.
 
-## Field dictionary for the bundled import CSV
+## How to Open the Existing Power BI Report
 
-| Column | Meaning / suggested type |
-|---|---|
-| `city` | City name; text |
-| `country` | Country; text |
-| `latitude`, `longitude` | Geographic coordinates; decimal number |
-| `forecast_date` | Forecast date; Date |
-| `fetched_at_utc` | Time the forecast was retrieved; Date/Time or text |
-| `weather_code` | Weather provider's weather code; whole number/text |
-| `temperature_2m_max` | Forecast maximum temperature at 2 m; decimal number, °C |
-| `temperature_2m_min` | Forecast minimum temperature at 2 m; decimal number, °C |
-| `precipitation_sum` | Forecast precipitation total; decimal number, mm |
-| `precipitation_probability_max` | Maximum precipitation probability; decimal number, % |
-| `wind_speed_10m_max` | Maximum wind speed at 10 m; decimal number, according to source units |
-| `temperature_range_c` | Difference between maximum and minimum temperature; decimal number, °C |
-| `is_rain_risk` | Rain-risk flag; text |
-| `needs_review` | Data-quality/review flag; text |
+### Step 1: Download the PBIX File
 
-## Build the report visuals
+1. Open this project folder on GitHub.
+2. Select `WeatherScope_India_Dashboard.pbix`.
+3. Download the file to your computer.
+4. Open it in Microsoft Power BI Desktop.
 
-After loading the bundled CSV, use the fields from `WeatherForecast`.
+Power BI Desktop is not available natively for macOS. Mac users need a supported Windows or remote Windows environment to open and edit the PBIX file.
 
-### 1. Create measures
+### Step 2: Verify the Data Source
 
-In Power BI, create these measures (the menu is usually **Modeling → New measure** in Desktop; browser editing options may differ):
+If Power BI reports that the original CSV cannot be found:
+
+1. Locate `data/WeatherScope_PowerBI_Import.csv` in your local repository.
+2. Open **Transform data** or **Data source settings**, depending on the issue.
+3. Update the source path to the local CSV file.
+4. Confirm that the column names match the fields referenced by the report.
+5. Apply the changes and verify that the visuals load correctly.
+
+The relative path documented in this README does not guarantee that Power BI can automatically locate the CSV on another computer. You may need to reconnect the source.
+
+## How to Import the CSV and Rebuild the Dashboard
+
+### Step 1: Download the Dataset
+
+Download `data/WeatherScope_PowerBI_Import.csv` from this project folder and save it locally.
+
+### Step 2: Import the Data
+
+1. Open Power BI Desktop.
+2. Select **Get data → Text/CSV**.
+3. Select `WeatherScope_PowerBI_Import.csv`.
+4. Confirm that the delimiter is a comma and the first row contains headers.
+5. Select **Transform data** to review the dataset.
+
+### Step 3: Verify Data Types
+
+| Column | Meaning | Suggested Type |
+|---|---|---|
+| `city` | City name | Text |
+| `country` | Country name | Text |
+| `latitude` | Latitude | Decimal number |
+| `longitude` | Longitude | Decimal number |
+| `forecast_date` | Forecast date | Date |
+| `fetched_at_utc` | Retrieval timestamp | Date/Time or text |
+| `weather_code` | Weather condition code | Whole number or text |
+| `temperature_2m_max` | Maximum temperature at 2 metres | Decimal number |
+| `temperature_2m_min` | Minimum temperature at 2 metres | Decimal number |
+| `precipitation_sum` | Forecast precipitation total | Decimal number |
+| `precipitation_probability_max` | Maximum precipitation probability | Decimal number |
+| `wind_speed_10m_max` | Maximum wind speed at 10 metres | Decimal number |
+| `temperature_range_c` | Maximum minus minimum temperature | Decimal number |
+| `is_rain_risk` | Rain-risk flag | Text |
+| `needs_review` | Data review flag | Text |
+
+Select **Close & Apply** after checking the data types.
+
+Rename the imported table to `WeatherForecast` if you want to use the following DAX formulas without modification.
+
+## Build the Dashboard Measures
+
+In Power BI Desktop, select **Modeling → New measure**.
+
+### 1. Average Maximum Temperature
 
 ```DAX
 Average Max Temperature =
 AVERAGE(WeatherForecast[temperature_2m_max])
+```
 
+### 2. Peak Temperature
+
+```DAX
 Peak Temperature =
 MAX(WeatherForecast[temperature_2m_max])
+```
 
+### 3. Average Rain Probability
+
+```DAX
 Average Rain Probability =
 AVERAGE(WeatherForecast[precipitation_probability_max])
+```
 
+### 4. Rain-Risk Forecasts
+
+```DAX
 Rain-Risk Forecasts =
 CALCULATE(
     COUNTROWS(WeatherForecast),
@@ -104,43 +169,53 @@ CALCULATE(
 )
 ```
 
-If Power BI has named the table something else, replace `WeatherForecast` with your table name. Confirm that the rain-probability column is numeric and stored on a 0–100 scale before formatting it as a percentage; do not apply percentage formatting if the values are already decimal fractions unless you adjust the measure.
+If your table has a different name, replace `WeatherForecast` with your actual table name.
 
-### 2. Add KPI cards
+**Formatting note:** The bundled CSV stores precipitation probability on a 0–100 scale. Format the measure carefully so values such as 35 are displayed as approximately 35%, not 3,500%.
 
-Add four **Card** visuals and assign one measure to each:
-- `Average Max Temperature` — title: **Average Max Temperature**
-- `Peak Temperature` — title: **Peak Temperature**
-- `Average Rain Probability` — title: **Average Rain Probability**
-- `Rain-Risk Forecasts` — title: **Rain-Risk Forecasts**
+## Build the Report Visuals
 
-Set temperature units to °C and rain probability to a readable percentage format.
+### 1. KPI Cards
 
-### 3. Add the city slicer
+Create four Card visuals:
 
-- Add a **Slicer** visual.
-- Drag `city` into the slicer field.
-- Enable list or horizontal/tile style, depending on the options available.
-- Use it to filter the cards and charts by Bengaluru, Chennai, Hyderabad, Mumbai, or Mysuru.
+| Measure | Display Title | Unit |
+|---|---|---|
+| `Average Max Temperature` | Average Max Temperature | °C |
+| `Peak Temperature` | Peak Temperature | °C |
+| `Average Rain Probability` | Average Rain Probability | % |
+| `Rain-Risk Forecasts` | Rain-Risk Forecasts | Count |
 
-### 4. Add the rain-probability chart
+Use consistent titles and sensible decimal precision.
 
-- Add a **Clustered column chart** or **Line chart**.
-- X-axis: `forecast_date`.
-- Y-axis: `precipitation_probability_max` with aggregation **Average** (or Maximum if that better matches the story).
-- Title: **Rain Probability by Forecast Date (%)**.
-- Sort the date axis ascending.
+### 2. City Slicer
 
-### 5. Add the temperature-by-city chart
+1. Insert a **Slicer** visual.
+2. Add the `city` field.
+3. Choose a list, horizontal, or tile layout.
+4. Verify that the slicer filters the intended cards, charts, and table.
 
-- Add a **Clustered column chart**.
-- X-axis: `city`.
-- Y-axis: `temperature_2m_max` with aggregation **Average**.
-- Title: **Average Maximum Temperature by City (°C)**.
+### 3. Rain Probability Chart
 
-### 6. Add the detailed forecast table
+1. Insert a **Clustered column chart** or **Line chart**.
+2. Set the X-axis to `forecast_date`.
+3. Set the Y-axis to `precipitation_probability_max`.
+4. Choose Average or Maximum aggregation according to the analysis.
+5. Sort dates in ascending order.
+6. Title the visual **Rain Probability by Forecast Date (%)**.
 
-Add a **Table** visual and include:
+### 4. Temperature by City Chart
+
+1. Insert a **Clustered column chart**.
+2. Set the X-axis to `city`.
+3. Set the Y-axis to `temperature_2m_max`.
+4. Use Average aggregation.
+5. Title the visual **Average Maximum Temperature by City (°C)**.
+
+### 5. Detailed Forecast Table
+
+Add these fields to a Table visual:
+
 - `city`
 - `forecast_date`
 - `temperature_2m_max`
@@ -150,44 +225,92 @@ Add a **Table** visual and include:
 - `wind_speed_10m_max`
 - `is_rain_risk`
 
-Rename displayed column headers if needed (for example, `temperature_2m_max` → `Max Temp (°C)`). Format numeric columns to sensible decimal places.
+Rename displayed headers where appropriate. For example, display `temperature_2m_max` as **Max Temperature (°C)**. Use readable dates and consistent numeric formatting.
 
-## Apply the theme
+## Apply the Power BI Theme
 
-1. Open the report's theme or styling options.
-2. Choose **Browse for themes / Import theme** if that option is available in your Power BI editing experience.
-3. Select `WeatherScope_PowerBI_Theme.json`.
-4. Review the visuals after importing, because themes do not always override every visual's manually configured formatting.
+The project includes `WeatherScope_PowerBI_Theme.json`.
 
-## Recommended layout and styling
+1. Open the report in Power BI Desktop.
+2. Go to **View → Themes**.
+3. Select **Browse for themes** or the equivalent import-theme option.
+4. Choose `WeatherScope_PowerBI_Theme.json`.
+5. Review each visual and adjust formatting if needed.
 
-- Canvas background: dark navy.
-- Accent color: teal/cyan.
-- Top row: four KPI cards.
-- Middle row: rain-probability trend and average maximum temperature by city.
-- Lower row: detailed forecast table.
-- Place the city slicer where it is easy to find and make sure it filters the intended visuals.
-- Use consistent titles, units, readable text, and enough contrast.
+Some manually configured visual properties may not change automatically when a theme is imported.
 
-## Validate before publishing
+## Recommended Layout and Styling
 
-- Verify date, temperature, precipitation, and wind-speed data types.
-- Check that the KPI values change when a city is selected.
-- Check whether the rain-risk flag is populated consistently.
-- Confirm chart aggregations and labels are correct.
-- Note the forecast period and source/update timestamp in the report.
-- Do not describe the data as live or real-time unless the pipeline actually refreshes it.
-- Avoid uploading credentials, API keys, secrets, or private source data.
+- Use a dark navy canvas background.
+- Use teal or cyan as the accent color.
+- Place four KPI cards across the top.
+- Position the city slicer below the KPI row.
+- Place the rain-probability chart and city-temperature chart side by side.
+- Place the detailed forecast table at the bottom.
+- Maintain consistent typography, units, spacing, and contrast.
 
-## Publish and share
+## Validation Checklist
 
-- Save the `.pbix` file if your Power BI environment permits downloading/saving it.
-- Publish the report to the appropriate Power BI workspace.
-- For a public portfolio, prefer a screenshot or approved static preview unless the data is safe to expose. **Publish to web makes the report publicly accessible to anyone with the link and may expose underlying report data.** Follow your organization's policies before using it.
-- Add the public report link to this README only after verifying that it works and that public sharing is permitted.
+Before sharing the report, verify the following:
 
-## Current limitations
+- [ ] The CSV loads successfully.
+- [ ] Dates and numeric columns have the correct data types.
+- [ ] KPI values match the underlying dataset.
+- [ ] The city slicer filters the intended visuals.
+- [ ] Chart aggregations and labels are correct.
+- [ ] The rain-risk measure counts records marked `"Yes"`.
+- [ ] The forecast period and retrieval timestamp are documented.
+- [ ] The report works after reconnecting the data source.
+- [ ] No API keys, credentials, or private data are included.
 
-- The `.pbix` file is not included in this folder yet.
-- The HTML file is a preview, not a replacement for the Power BI report.
-- The bundled CSV is a 35-row import dataset. Check the dataset and source notes before presenting it as a production or continuously refreshed forecast.
+## Publish and Share
+
+### GitHub Portfolio
+
+Use the project files to demonstrate the dashboard:
+
+- **PDF:** A quick static preview.
+- **PBIX:** The Power BI report for exploration in Power BI Desktop.
+- **CSV:** The dataset used to reproduce the report.
+- **Theme JSON:** The dashboard's visual theme.
+- **README:** Project overview and setup instructions.
+
+### Power BI Service
+
+The report may be published to a Power BI workspace if your account and workspace permit it.
+
+A public **Publish to web** link is currently unavailable because public embedding is disabled by the Power BI administrator. Public embedding requires administrator approval and can expose report data to anyone with the link.
+
+Until public publishing is enabled and approved, use the PDF preview and PBIX download as the portfolio access points. Add a public report URL here only after verifying that it works and that public sharing is permitted.
+
+## Data Source and Limitations
+
+The bundled dataset contains **35 forecast records across five Indian cities**, with forecast dates from **28 October through 3 November 2026**.
+
+It includes forecast temperatures, precipitation, precipitation probability, wind speed, weather codes, retrieval timestamps, and rain-risk/review flags.
+
+Refer to [`data-source.md`](data-source.md) for source details and limitations. Verify the upstream source, retrieval timestamp, forecast horizon, units, and refresh process before describing the data as current weather information.
+
+The dashboard is a portfolio demonstration and should not be described as a live monitoring service unless automated retrieval and refresh have been verified.
+
+## Technology Stack
+
+- Microsoft Power BI
+- CSV data ingestion
+- Data modelling and aggregation
+- DAX measures
+- KPI reporting and interactive filtering
+- Data visualization and dashboard design
+- Git and GitHub for version control and documentation
+
+## Future Improvements
+
+- Automate forecast-data refresh.
+- Add data-quality checks for missing values, duplicates, and invalid records.
+- Add weather-condition descriptions and richer location context.
+- Compare historical weather with forecasts when suitable data is available.
+- Improve accessibility, documentation, and refresh monitoring.
+
+## Project Summary
+
+WeatherScope India demonstrates how structured weather forecast data can be transformed into an understandable business intelligence dashboard. It combines KPI reporting, city-level filtering, forecast trends, city comparisons, and detailed record inspection in a single Power BI report.
