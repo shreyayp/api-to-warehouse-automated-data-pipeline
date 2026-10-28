@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+data/raw/*
+data/processed/*.db
+data/processed/*.csv
+reports/*.csv
+reports/*.json
+!.gitkeep
