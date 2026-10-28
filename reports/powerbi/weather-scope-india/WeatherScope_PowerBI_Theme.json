@@ -1,0 +1,64 @@
+{
+  "name": "WeatherScope India \u2014 Midnight Aurora",
+  "dataColors": [
+    "#58E1E8",
+    "#7196FF",
+    "#A78BFA",
+    "#FFB86B",
+    "#77E0B5",
+    "#FF7D8B",
+    "#7DC4FF",
+    "#F2D479"
+  ],
+  "background": "#08111F",
+  "foreground": "#EEF6FF",
+  "tableAccent": "#58E1E8",
+  "good": "#77E0B5",
+  "neutral": "#FFB86B",
+  "bad": "#FF7D8B",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "title": [
+          {
+            "show": true,
+            "fontFamily": "Segoe UI",
+            "fontSize": 12,
+            "fontColor": {
+              "solid": {
+                "color": "#EEF6FF"
+              }
+            }
+          }
+        ],
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#111F32"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#263B54"
+              }
+            },
+            "radius": 8
+          }
+        ],
+        "visualHeader": [
+          {
+            "show": true
+          }
+        ]
+      }
+    }
+  }
+}

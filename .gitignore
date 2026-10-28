@@ -7,3 +7,4 @@ data/processed/*.csv
 reports/*.csv
 reports/*.json
 !.gitkeep
+.DS_Store
