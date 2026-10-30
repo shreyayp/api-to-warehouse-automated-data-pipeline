@@ -4,6 +4,8 @@ A Python ETL and analytics project that collects daily weather forecasts from th
 
 The project demonstrates an end-to-end data workflow: **API ingestion → transformation → data quality checks → SQLite warehouse → SQL analysis → reports → Power BI dashboard**.
 
+**Live Streamlit Dashboard:** [Open WeatherScope India](https://weatherscope-india.streamlit.app/)
+
 ## Dashboard preview
 
 **WeatherScope India — Weather Intelligence**
