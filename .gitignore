@@ -8,3 +8,4 @@ reports/*.csv
 reports/*.json
 !.gitkeep
 .DS_Store
+!data/processed/weather_forecast.csv
