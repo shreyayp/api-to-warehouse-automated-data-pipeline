@@ -61,7 +61,6 @@ Open-Meteo Forecast API
 Power BI import CSV ---> WeatherScope India dashboard
 ```
 
-See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the component and table details.
 
 ## Tech stack
 
@@ -173,7 +172,6 @@ Derived fields:
 - `quality_flags` — semicolon-separated validation flags
 - `needs_review` — whether any quality flag exists
 
-See [docs/DATA_DICTIONARY.md](docs/DATA_DICTIONARY.md) for field definitions.
 
 ## Generated outputs
 
@@ -231,13 +229,6 @@ These values describe the **saved sample run**, not a guarantee about future run
 - The starter project does not configure scheduled execution, deployed services, automated alerting, or production monitoring.
 - A public Power BI link should only be added if it is enabled by the tenant administrator and approved for the data. A PDF/screenshot is provided as a static portfolio preview.
 
-## Further documentation
-
-- [Architecture](docs/ARCHITECTURE.md)
-- [Data dictionary](docs/DATA_DICTIONARY.md)
-- [Portfolio and interview guide](docs/PORTFOLIO_AND_INTERVIEW.md)
-- [Power BI dashboard guide](reports/powerbi/weather-scope-india/README.md)
-- [Dashboard data-source note](reports/powerbi/weather-scope-india/data-source.md)
 
 ## License and reuse
 
