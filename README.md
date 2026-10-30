@@ -1,4 +1,4 @@
-# API-to-Warehouse — Automated Weather Data Pipeline
+# WeatherScope India — API-to-Warehouse Automated Weather Data Pipeline
 
 A Python ETL and analytics project that collects daily weather forecasts from the Open-Meteo REST API for five Indian cities, validates and transforms the JSON data with Pandas, stores timestamped snapshots in SQLite, and generates CSV/JSON reports for SQL analysis and Power BI visualization.
 
